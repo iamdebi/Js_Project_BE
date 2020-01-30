@@ -9,7 +9,7 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(parser.json());
 
-var url = process.env.MONGOLAB_URI;
+mongodb: var url = process.env.MONGOLAB_URI;
 
 MongoClient.connect(url, (error, client) => {
   if (error) {
