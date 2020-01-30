@@ -15,7 +15,7 @@ MongoClient.connect(url, (error, client) => {
     console.log(error);
   }
 
-  const db = client.db("heroku_51l7725v");
+  const db = client.db("heroku_k04slfgv");
   const questionCollection = db.collection("questions");
   const questionsRouter = createRouter(questionCollection);
   app.use("/api/questions", questionsRouter);
@@ -24,7 +24,7 @@ MongoClient.connect(url, (error, client) => {
   const usersRouter = createRouter(userCollection);
   app.use("/api/users", usersRouter);
 
-  app.listen(process.env.port || 3000, function() {
+  app.listen(process.env.port || 5000, function() {
     console.log(`app listening on port ${this.address().port}`);
   });
 });
