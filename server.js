@@ -8,12 +8,14 @@ const parser = require("body-parser");
 app.use(cors());
 app.use(parser.json());
 
-MongoClient.connect("mongodb://localhost:27017", (error, client) => {
+var url = process.env.MONGODB_URI;
+
+MongoClient.connect(url, (error, client) => {
   if (error) {
     console.log(error);
   }
 
-  const db = client.db("healthyquiz");
+  const db = client.db("heroku_51l7725v");
   const questionCollection = db.collection("questions");
   const questionsRouter = createRouter(questionCollection);
   app.use("/api/questions", questionsRouter);
@@ -22,7 +24,7 @@ MongoClient.connect("mongodb://localhost:27017", (error, client) => {
   const usersRouter = createRouter(userCollection);
   app.use("/api/users", usersRouter);
 
-  app.listen(3000, function() {
+  app.listen(process.env.port || 3000, function() {
     console.log(`app listening on port ${this.address().port}`);
   });
 });

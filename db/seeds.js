@@ -1,12 +1,11 @@
-use healthyquiz;
-
 db.dropDatabase();
 
-
-db.questions.insertMany([{
+db.questions.insertMany([
+  {
     option1: "250ml of ice cream",
     option2: "44g of butter",
-    responseText: "250ml of ice cream and 44g of butter have the same amount of fat",
+    responseText:
+      "250ml of ice cream and 44g of butter have the same amount of fat",
     url1: "http://localhost:8080/img/ice-cream.png",
     url2: "http://localhost:8080/img/butter.png",
     totalResponses1: 148,
@@ -16,7 +15,8 @@ db.questions.insertMany([{
   {
     option1: "Seven sugar cubes",
     option2: "A can of coke",
-    responseText: "Drinking a can of coke is the same as eating seven sugar cubes",
+    responseText:
+      "Drinking a can of coke is the same as eating seven sugar cubes",
     url1: "http://localhost:8080/img/sugar-cubes.png",
     url2: "http://localhost:8080/img/can-of-coke.png",
     totalResponses1: 24,
@@ -36,7 +36,8 @@ db.questions.insertMany([{
   {
     option1: "Wholemeal bread slice",
     option2: "A blueberry muffin",
-    responseText: "One blueberry muffin has the same fibre content as a slice of wholemeal bread",
+    responseText:
+      "One blueberry muffin has the same fibre content as a slice of wholemeal bread",
     url1: "http://localhost:8080/img/bread.png",
     url2: "http://localhost:8080/img/muffin.png",
     totalResponses1: 52,
@@ -62,9 +63,10 @@ db.questions.insertMany([{
     totalResponses1: 81,
     totalResponses2: 69
   }
-
 ]);
 
-db.users.insertMany([{
-  responses: [1, 2, 1, 1, 2, 2, 1]
-}])
+db.users.insertMany([
+  {
+    responses: [1, 2, 1, 1, 2, 2, 1]
+  }
+]);
