@@ -4,6 +4,7 @@ const MongoClient = require("mongodb").MongoClient;
 const createRouter = require("./helpers/create_router");
 const cors = require("cors");
 const parser = require("body-parser");
+const port = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(parser.json());
@@ -15,7 +16,7 @@ MongoClient.connect(url, (error, client) => {
     console.log(error);
   }
 
-  const db = client.db("heroku_k04slfgv");
+  const db = url.db("heroku_k04slfgv");
   const questionCollection = db.collection("questions");
   const questionsRouter = createRouter(questionCollection);
   app.use("/api/questions", questionsRouter);
@@ -24,7 +25,9 @@ MongoClient.connect(url, (error, client) => {
   const usersRouter = createRouter(userCollection);
   app.use("/api/users", usersRouter);
 
-  app.listen(process.env.port || 5000, function() {
+  app.listen(port, function() {
     console.log(`app listening on port ${this.address().port}`);
   });
+
+  console.log(db);
 });
