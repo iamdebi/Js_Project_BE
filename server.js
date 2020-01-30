@@ -15,7 +15,7 @@ MongoClient.connect(url, (error, client) => {
     console.log(error);
   }
 
-  const db = client.db("heroku_k04slfgv");
+  const db = MongoClient.db("heroku_k04slfgv");
   const questionCollection = db.collection("questions");
   const questionsRouter = createRouter(questionCollection);
   app.use("/api/questions", questionsRouter);
