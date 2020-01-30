@@ -8,8 +8,7 @@ const parser = require("body-parser");
 app.use(cors());
 app.use(parser.json());
 
-var url =
-  "mongodb://heroku_k04slfgv:jl1f98tuv20i36ldlhcp2p8vsh@ds017726.mlab.com:17726/heroku_k04slfgv";
+var url = process.env.MONGOLAB_URI;
 
 MongoClient.connect(url, (error, client) => {
   if (error) {
