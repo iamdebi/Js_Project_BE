@@ -8,14 +8,15 @@ const parser = require("body-parser");
 app.use(cors());
 app.use(parser.json());
 
-var url = process.env.MONGODB_URI;
+var url =
+  "mongodb://heroku_k04slfgv:jl1f98tuv20i36ldlhcp2p8vsh@ds017726.mlab.com:17726/heroku_k04slfgv";
 
 MongoClient.connect(url, (error, client) => {
   if (error) {
     console.log(error);
   }
 
-  const db = MongoClient.db("heroku_k04slfgv");
+  const db = client.db("heroku_k04slfgv");
   const questionCollection = db.collection("questions");
   const questionsRouter = createRouter(questionCollection);
   app.use("/api/questions", questionsRouter);
