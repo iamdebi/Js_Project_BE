@@ -36,7 +36,7 @@ MongoClient.connect(url)
     const db = client.db("heroku_k04slfgv");
     const questionCollection = db.collection("questions");
     const questionsRouter = createRouter(questionCollection);
-    app.use("/api/questions", questionsRouter);
+    app.use("/api/heroku_k04slfgv/questions", questionsRouter);
   })
   .catch(console.err);
 
@@ -45,7 +45,7 @@ MongoClient.connect(url)
     const db = client.db("heroku_k04slfgv");
     const userCollection = db.collection("users");
     const usersRouter = createRouter(userCollection);
-    app.use("/api/users", usersRouter);
+    app.use("/api/heroku_k04slfgv/users", usersRouter);
   })
   .catch(console.err);
 
