@@ -10,7 +10,7 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(parser.json());
 
-var url = process.env.MONGOLAB_URI;
+var url = process.env.MONGODB_URI;
 
 // MongoClient.connect(url, (error, client) => {
 //   if (error) {
@@ -34,21 +34,24 @@ var url = process.env.MONGOLAB_URI;
 
 MongoClient.connect(url)
   .then(client => {
-    const db = client.db("heroku_k04slfgv");
+    const db = client.db();
     const questionCollection = db.collection("questions");
     const questionsRouter = createRouter(questionCollection);
-    app.use("/api/heroku_k04slfgv/questions", questionsRouter);
+    app.use("/api/questions", questionsRouter);
+    const userCollection = db.collection("users");
+    const usersRouter = createRouter(userCollection);
+    app.use("/api/users", usersRouter);
   })
   .catch(console.err);
 
-MongoClient.connect(url)
-  .then(client => {
-    const db = client.db("heroku_k04slfgv");
-    const userCollection = db.collection("users");
-    const usersRouter = createRouter(userCollection);
-    app.use("/api/heroku_k04slfgv/users", usersRouter);
-  })
-  .catch(console.err);
+// MongoClient.connect(url)
+//   .then(client => {
+//     const db = client.db();
+//     const userCollection = db.collection("users");
+//     const usersRouter = createRouter(userCollection);
+//     app.use("/api/users", usersRouter);
+//   })
+//   .catch(console.err);
 
 app.listen(process.env.PORT || 5000, function() {
   console.log(`app listening on port ${this.address().port}`);
